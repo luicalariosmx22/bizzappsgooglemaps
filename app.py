@@ -80,7 +80,12 @@ def buscar():
         print("[BUSCAR] ❌ Error: Formulario incompleto")
         return "❌ Error: Missing form data", 400
 
-    gmaps = googlemaps.Client(key="AIzaSyDylhN9adFvJXFKZg0OgBJHqAblgJAgOzo")  # Reemplaza con tu API Key real
+    api_key = os.environ.get('GOOGLE_MAPS_API_KEY')
+    if not api_key:
+        print("[BUSCAR] ❌ Error: API Key no configurada en las variables de entorno")
+        return "❌ Error: API Key not configured", 500
+
+    gmaps = googlemaps.Client(key=api_key)
     resultados = []
 
     try:
@@ -137,4 +142,6 @@ def borrar_historial():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
