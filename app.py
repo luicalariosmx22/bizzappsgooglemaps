@@ -83,7 +83,7 @@ def buscar():
         print("[BUSCAR] ❌ Error: Formulario incompleto")
         return "❌ Error: Missing form data", 400
 
-    api_key = os.environ.get('GOOGLE_MAPS_API_KEY')
+    api_key = os.getenv("GOOGLE_MAPS_API_BACKEND")
     if not api_key:
         print("[BUSCAR] ❌ Error: API Key no configurada en las variables de entorno")
         return "❌ Error: API Key not configured", 500
