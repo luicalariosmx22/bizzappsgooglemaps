@@ -88,7 +88,7 @@ def buscar():
         print("[BUSCAR] ❌ Error: API Key no configurada en las variables de entorno")
         return "❌ Error: API Key not configured", 500
 
-    gmaps = googlemaps.Client(key=api_key)
+    gmaps = googlemaps.Client(key=os.getenv("GOOGLE_MAPS_API_BACKEND"))
     resultados = []
 
     try:
