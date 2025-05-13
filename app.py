@@ -60,7 +60,13 @@ def index():
 
     print(f"[INDEX] Resultados después de filtrar: {len(datos_filtrados)}")
 
-    return render_template('index.html', datos=datos_filtrados, ciudades=ciudades, tipos=tipos)
+    return render_template(
+        'index.html',
+        datos=datos_filtrados,
+        ciudades=ciudades,
+        tipos=tipos,
+        google_maps_api_key=os.environ.get("GOOGLE_MAPS_API_KEY")
+    )
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
@@ -135,7 +141,13 @@ def buscar():
         print(f"[BUSCAR] ❌ EXCEPCIÓN: {e}")
         return f"❌ Error: {e}"
 
-    return render_template('index.html', datos=datos_finales, ciudades=[], tipos=[])
+    return render_template(
+        'index.html',
+        datos=datos_finales,
+        ciudades=[],
+        tipos=[],
+        google_maps_api_key=os.environ.get("GOOGLE_MAPS_API_KEY")
+    )
 
 @app.route('/borrar', methods=['POST'])
 def borrar_historial():
