@@ -1,9 +1,12 @@
 # app.py
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, session
+from dotenv import load_dotenv
 import json
 import googlemaps
 import time
 import os
+
+load_dotenv()  # Load environment variables from a .env file
 
 DEFAULT_DATA_FILE = 'clinicas_bariatricas.json'
 SEARCH_HISTORY_FILE = 'historial_busquedas.json'
